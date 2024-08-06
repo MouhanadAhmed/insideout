@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/insideout/static/css/main.f546f202.css",
+    "main.js": "/insideout/static/js/main.16b3061b.js",
+    "static/js/453.1046993e.chunk.js": "/insideout/static/js/453.1046993e.chunk.js",
+    "static/media/dr pic.png": "/insideout/static/media/dr pic.a0be450abc7defedfc06.png",
+    "static/media/2.png": "/insideout/static/media/2.68cd9ff6417dfb194b40.png",
+    "static/media/fa-solid-900.ttf": "/insideout/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
+    "static/media/fa-brands-400.ttf": "/insideout/static/media/fa-brands-400.0ff70dcbf135d859ebf3.ttf",
+    "static/media/fa-solid-900.woff2": "/insideout/static/media/fa-solid-900.93f719f4d62bfa3e748c.woff2",
+    "static/media/fa-brands-400.woff2": "/insideout/static/media/fa-brands-400.bb8d5a145e22822103fb.woff2",
+    "static/media/fa-regular-400.ttf": "/insideout/static/media/fa-regular-400.17a6e1aebccdbaa39e78.ttf",
+    "static/media/fa-regular-400.woff2": "/insideout/static/media/fa-regular-400.bc3722686635b5f86132.woff2",
+    "static/media/alfont_com_GE-SS-Two-Medium.otf": "/insideout/static/media/alfont_com_GE-SS-Two-Medium.3fb3dc620fa627c8b767.otf",
+    "static/media/fa-v4compatibility.ttf": "/insideout/static/media/fa-v4compatibility.0f6cb412603527bda691.ttf",
+    "static/media/fa-v4compatibility.woff2": "/insideout/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
+    "index.html": "/insideout/index.html",
+    "main.f546f202.css.map": "/insideout/static/css/main.f546f202.css.map",
+    "main.16b3061b.js.map": "/insideout/static/js/main.16b3061b.js.map",
+    "453.1046993e.chunk.js.map": "/insideout/static/js/453.1046993e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f546f202.css",
+    "static/js/main.16b3061b.js"
+  ]
+}
