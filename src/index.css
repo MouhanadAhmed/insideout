@@ -1,13 +1,31 @@
+@font-face {
+  font-family: 'gess2';
+  src: url('./assets/fonts/alfont_com_GE-SS-Two-Medium.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'gess2',-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+select option:checked {
+  background: #cf9730 -webkit-linear-gradient(bottom, #cf9730 0%, #cf9730 100%);
+  color: white;
+}
+select option:hover {
+  background: #cf9730 -webkit-linear-gradient(bottom, #cf9730 0%, #cf9730 100%);
+  color: white;
 }
