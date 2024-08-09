@@ -3,7 +3,11 @@ import './App.css';
 import ContactUs from './ContactUs/ContactUs.jsx';
 import logo from './assets/images/2.png';
 import dr from './assets/images/dr pic.png';
+import LanguageSelector from './utility/LanguageSelector/LanguageSelector.js';
+import { useTranslation } from 'react-i18next';
+// import i18n from '../../../utility/i18n/index.js';
 function App() {
+  const { t }                                                                             = useTranslation();
   return (
     <div className="App">
       {/* start logo */}
@@ -18,9 +22,9 @@ function App() {
     <img src={dr} className="object-contain" alt="logo" />
       
     <div className=' pt-16 md:pt-32'>
-      <h2 className='text-custom-gold text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-9xl 2xl:text-9xl'>دكتور</h2>
-      <h2 className='text-custom-gold text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-9xl mb-3'>وائل يحيى</h2>
-      <p className='text-custom-gold indent-0 text-xs sm:text-sm md:text-3xl lg:text-3xl xl:text-3xl 2xl:text-3xl'>استشاري جراحة التجميل وعلاج الحروق</p>
+      <h2 className='text-custom-gold text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-9xl 2xl:text-9xl'>{t("DR")}</h2>
+      <h2 className='text-custom-gold text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-9xl mb-3'>{t("WAEL YAHIA")}</h2>
+      <p className='text-custom-gold indent-0 text-xs sm:text-sm md:text-3xl lg:text-3xl xl:text-3xl 2xl:text-3xl'>{t("Consultant in plastic surgery and burns treatment")}</p>
     </div>
     </div>
   {/* end about */}
@@ -41,11 +45,12 @@ function App() {
   <i className="fa-brands fa-whatsapp text-custom-gold fa-2xl cursor-pointer"></i>
   </a>
   <a href="https://maps.app.goo.gl/iUQ8ByVop1E68dCr5" target="blank" alt="goole maps location">
-  <i class="fa-solid fa-map-location text-custom-gold fa-2xl cursor-pointer"></i>
+  <i className="fa-solid fa-map-location text-custom-gold fa-2xl cursor-pointer"></i>
   </a>
 
   </div>
     <p className="text-custom-gold pb-3">العنوان : القاهره - ١١٠ شارع المرغني مصر الجديده عماره ماكدونالدز المرغني </p>
+    <LanguageSelector/>
     </div>
   );
 }
