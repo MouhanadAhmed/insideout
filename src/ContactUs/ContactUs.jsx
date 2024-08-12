@@ -40,9 +40,10 @@ export default function ContactUs() {
     console.log(values);
 
     //  setIsValues(values);   
-    SetSubmitFormLoading(false)
-   formValues={...values};
-   sendFormDataToServer(formValues);
+    formValues={...values};
+     sendFormDataToServer(formValues);
+    // SetSubmitFormLoading(false)
+
   },
  })
 
@@ -76,11 +77,12 @@ export default function ContactUs() {
     } else {
       console.error('Failed to send email');
     }
+    
   } catch (error) {
     console.error('Error sending email:', error);
   }
+  SetSubmitFormLoading(false)
 };
-
   return (
     <>
 
@@ -132,7 +134,7 @@ export default function ContactUs() {
      
       
 
-      {SubmitFormLoading ? <button className={`form-group  mb-2 mx-auto md:mx-0  text-custom-gold  md:me-8 md:w-1/3`} type='submit'><i className='fa fa-spinner fa-spin'></i></button>:<button type                                                                    = "submit" disabled={!formik.isValid && formik.dirty } className=' mb-2 mx-auto md:mx-0 rounded-2xl p-2 px-3  md:me-8 md:w-1/3 bg-custom-gold text-white hover:bg-white border hover:border-custom-gold hover:text-custom-gold' > {t("send")}</button>}
+      {SubmitFormLoading ? <div className='loader mx-auto'></div>:<button type                                                                    = "submit" disabled={!formik.isValid && formik.dirty } className=' mb-2 mx-auto md:mx-0 rounded-2xl p-2 px-3  md:me-8 md:w-1/3 bg-custom-gold text-white hover:bg-white border hover:border-custom-gold hover:text-custom-gold' > {t("send")}</button>}
 
       </form>
       </div>

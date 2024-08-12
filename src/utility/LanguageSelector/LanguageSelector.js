@@ -13,8 +13,9 @@ const LanguageSelector = () => {
         localStorage.setItem("lang", lang);
     }
     useEffect(()=>{
-        i18n.changeLanguage(localStorage.getItem("lang")||"ar")
-        setSelectedLanguage(localStorage.getItem("lang")||"ar");
+        i18n.changeLanguage(localStorage.getItem("lang"))
+        // setSelectedLanguage(localStorage.getItem("lang"));
+        console.log("lang", localStorage.getItem("lang"))
     },[])
     return (
         <>
