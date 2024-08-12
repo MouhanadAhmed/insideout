@@ -12,5 +12,15 @@
     "name":"Name",
     "phone":"Phone",
     "country":"Country",
-    "send":"Send"
+    "send":"Send",
+    "other":"other",
+    "sent successfully": "sent successfully",
+    "name required":"name required",
+    "please write at least two names":"please write at least two names",
+    "maximum 35 charcters":"maximum 35 charcters",
+    "minimum 3 charcters":"minimum 3 charcters",
+    "minimum 10 charcters":"minimum 10 charcters",
+    "country required":"country required",
+    "phone required":"phone required",
+    "kindly select":"kindly select"
 }
