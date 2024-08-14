@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import {  ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 export default function ContactUs() {
 
   const [SubmitFormLoading,SetSubmitFormLoading]= useState(false);
@@ -50,9 +51,13 @@ export default function ContactUs() {
  const sendFormDataToServer = async (formData) => {
   try {
     // adminMail:"in.mktg.ag@gmail.com"
-    formData.adminMail="clinic.insideout@gmail.com";
-    const response = await fetch('https://mail-service-zr73.onrender.com/insideout/send-email', {
-      method: 'POST',
+    // formData.adminMail="clinic.insideout@gmail.com";
+
+    await axios.post('https://sheetdb.io/api/v1/keiu5kxwag7fn', {
+      
+    formData
+  })
+    const response = await axios.post('https://mail-service-zr73.onrender.com/insideout/send-email', {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -127,7 +132,7 @@ export default function ContactUs() {
         <option value={t("Abdominal contouring and definition")}>{t("Abdominal contouring and definition")}</option>
         <option value={t("other")}> {t("other")}</option>
         </select>
-        {formik.errors.service && formik.touched.service?<div className                                   = 'p-2  text-sm text-white rounded-lg   ' role="alert">{formik.errors.service}</div>:<p className                                   = 'p-2   text-sm text-white rounded-lg      ' role="alert">  </p> }
+        {formik.errors.service ?<div className                                   = 'p-2  text-sm text-white rounded-lg   ' role="alert">{formik.errors.service}</div>:<p className                                   = 'p-2   text-sm text-white rounded-lg      ' role="alert">  </p> }
       
       </div>
 

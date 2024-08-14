@@ -50,6 +50,8 @@ function App() {
 
   </div>
     <p className="text-custom-gold pb-3">العنوان : القاهره - ١١٠ شارع المرغني مصر الجديده عماره ماكدونالدز المرغني </p>
+    
+    
     <LanguageSelector/>
     </div>
   );
