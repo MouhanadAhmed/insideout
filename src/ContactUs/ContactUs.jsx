@@ -63,8 +63,8 @@ export default function ContactUs() {
       },
       body: JSON.stringify(formData),
     });
-
-    if (response.ok) {
+    console.log(response);
+    if (response.status === 200) {
       console.log('Email sent successfully');
       // Optionally, you can reset the form here
       formik.resetForm()
@@ -123,6 +123,7 @@ export default function ContactUs() {
         {/* <label htmlFor                                                                              = "name" className={`fw-semibold text-uppercase `}>Name *</label> */}
         
         <select  className={`form-control form-control-sm p-2 w-full bg-transparent border placeholder-custom-gold text-custom-gold border-custom-gold custom-select rounded-lg`}  id='service' name='service' placeholder='الخدمه' value={formik.values.service} onChange={formik.handleChange} onBlur={formik.handleBlur}> 
+        <option   ></option>
         <option  value={t("body contouring")} >{t("body contouring")}</option>
         <option value={t("Breast augmentation / reduction")}>{t("Breast augmentation / reduction")}</option>
         <option value={t("Brazilian butt lift")}> {t("Brazilian butt lift")}</option>
