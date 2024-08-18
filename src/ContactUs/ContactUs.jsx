@@ -38,7 +38,7 @@ export default function ContactUs() {
     onSubmit                                                                                 : (values)=>
   {
     SetSubmitFormLoading(true)
-    console.log(values);
+    // console.log(values);
 
     //  setIsValues(values);   
     formValues={...values};
@@ -63,9 +63,9 @@ export default function ContactUs() {
       },
       body: JSON.stringify(formData),
     });
-    console.log(response);
-    if (response.status === 200) {
-      console.log('Email sent successfully');
+    // console.log(response);
+    // if (response.status === 200) {
+      // console.log('Email sent successfully');
       // Optionally, you can reset the form here
       formik.resetForm()
       toast.success(`${t("sent successfully")}`, {
@@ -79,9 +79,9 @@ export default function ContactUs() {
         theme: "colored",
         // transition: Bounce,
         });
-    } else {
-      console.error('Failed to send email');
-    }
+    // } else {
+    //   console.error('Failed to send email');
+    // }
     
   } catch (error) {
     console.error('Error sending email:', error);
