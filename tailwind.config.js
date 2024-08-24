@@ -1,4 +1,4 @@
-export const content = [];
+// export const content = [];
 export const darkMode = 'media'; // or 'media' based on how you want to enable dark mode
 export const theme = {
   extend: {
@@ -32,4 +32,4 @@ export const theme = {
  
 };
 export const plugins = [];
-export const purge = ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'];
+export const content = ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'];

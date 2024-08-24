@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {  ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-export default function ContactUs() {
+import { GoogleReCaptchaProvider, GoogleReCaptcha, useGoogleReCaptcha  } from "react-google-recaptcha-v3";
 
+export default function ContactUs() {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [SubmitFormLoading,SetSubmitFormLoading]= useState(false);
+  const [token, setToken] = useState("");
+  const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
   const { t }                                                                             = useTranslation();
 
   let formValues = {} ;
@@ -22,7 +26,7 @@ export default function ContactUs() {
     name                                                                                     : Yup.string().required(`${t("name required")}`).min(6,`${t("please write at least two names")}`).max(35,`${t("maximum 35 charcters")}`),
     country                                                                                     : Yup.string().required(`${t("country required")}`).min(3,`${t("minimum 3 charcters")}`).max(35,`${t("maximum 35 charcters")}`),
     // website                                                                                     : Yup.string().optional("country is required , hint: min 3 charcters, maximum 15 charcters").min(10,"min 10 charcters").max(35,"maximum 35 charcters"),
-    phone                                                                                     : Yup.string().required(`${t("phone required")}`).min(10,`${t("minimum 10 charcters")}`).max(35,`${t("maximum 35 charcters")}`),
+    phone                                                                                     : Yup.string().required(`${t("phone required")}`).matches(/^\+?[\d\u0660-\u0669][\d\u0660-\u0669]{9,11}$/,"invalid phone number"),
     // email                                                                                     : Yup.string().optional("email is required , hint: min 3 charcters, maximum 15 charcters").min(10,"min 10 charcters").max(35,"maximum 35 charcters"),
     // subject                                                                                     : Yup.string().optional("subject is required , hint: min 3 charcters, maximum 15 charcters").min(10,"min 10 charcters").max(35,"maximum 35 charcters"),
     service                                                                                     : Yup.string().required(`${t("kindly select")}`)
@@ -50,35 +54,56 @@ export default function ContactUs() {
 
  const sendFormDataToServer = async (formData) => {
   try {
-    // adminMail:"in.mktg.ag@gmail.com"
-    // formData.adminMail="clinic.insideout@gmail.com";
 
-    await axios.post('https://sheetdb.io/api/v1/keiu5kxwag7fn', {
-      
-    formData
-  })
-    const response = await axios.post('https://mail-service-zr73.onrender.com/insideout/send-email', {
+    const token = await executeRecaptcha('yourAction');
+    
+    // Send token to your backend server for verification
+    fetch(`https://mail-service-seven.vercel.app/verify-recaptcha`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
-    });
-    // console.log(response);
-    // if (response.status === 200) {
-      // console.log('Email sent successfully');
-      // Optionally, you can reset the form here
-      formik.resetForm()
-      toast.success(`${t("sent successfully")}`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        // transition: Bounce,
-        });
+      body: JSON.stringify({ token }),
+    })
+      .then(response => response.json())
+      .then( async data => {
+        // console.log('Score:', data.score);
+        if(data.score>= 0.5){
+
+          // adminMail:"in.mktg.ag@gmail.com"
+          // formData.adminMail="clinic.insideout@gmail.com";
+      
+          await axios.post('https://sheetdb.io/api/v1/keiu5kxwag7fn', {
+            
+          formData
+        })
+          const response = await axios.post('https://mail-service-seven.vercel.app/insideout/send-email', {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+          // console.log(response);
+          // if (response.status === 200) {
+            // console.log('Email sent successfully');
+            // Optionally, you can reset the form here
+            formik.resetForm()
+            toast.success(`${t("sent successfully")}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              // transition: Bounce,
+              });
+        }
+      })
+      .catch(error => {
+        console.error('Error verifying reCAPTCHA:', error);
+      });
     // } else {
     //   console.error('Failed to send email');
     // }
@@ -88,6 +113,10 @@ export default function ContactUs() {
   }
   SetSubmitFormLoading(false)
 };
+const setTokenFunc = async(getToken) => {
+  setToken(getToken);
+};
+
   return (
     <>
 
@@ -141,7 +170,11 @@ export default function ContactUs() {
       
 
       {SubmitFormLoading ? <div className='loader mx-auto'></div>:<button type                                                                    = "submit" disabled={!formik.isValid && formik.dirty } className=' mb-2 mx-auto md:mx-0 rounded-2xl p-2 px-3  md:me-8 md:w-1/3 bg-custom-gold text-white hover:bg-white border hover:border-custom-gold hover:text-custom-gold' > {t("send")}</button>}
-
+          <GoogleReCaptcha
+            className="google-recaptcha-custom-class"
+            onVerify={setTokenFunc}
+            refreshReCaptcha={refreshReCaptcha}
+          />
       </form>
       </div>
       

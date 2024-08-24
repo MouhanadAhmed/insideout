@@ -5,10 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '../src/tailwind.css'; 
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
+
+import { GoogleReCaptchaProvider  } from "react-google-recaptcha-v3";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <GoogleReCaptchaProvider reCaptchaKey="6Lc-fS4qAAAAADxlVL7QJWqcRMOqtmAY9eNI5AAW">
+
     <App />
+    </GoogleReCaptchaProvider>
   </React.StrictMode>
 );
 
