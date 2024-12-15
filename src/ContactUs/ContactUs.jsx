@@ -55,20 +55,20 @@ export default function ContactUs() {
  const sendFormDataToServer = async (formData) => {
   try {
 
-    const token = await executeRecaptcha('yourAction');
+    // const token = await executeRecaptcha('yourAction');
     
     // Send token to your backend server for verification
-    fetch(`https://mail-service-seven.vercel.app/verify-recaptcha`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ token }),
-    })
-      .then(response => response.json())
-      .then( async data => {
-        // console.log('Score:', data.score);
-        if(data.score>= 0.5){
+    // fetch(`https://mail-service-seven.vercel.app/verify-recaptcha`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ token }),
+    // })
+    //   .then(response => response.json())
+    //   .then( async data => {
+    //     // console.log('Score:', data.score);
+    //     if(data.score>= 0.5){
 
           // adminMail:"in.mktg.ag@gmail.com"
           // formData.adminMail="clinic.insideout@gmail.com";
@@ -84,7 +84,7 @@ export default function ContactUs() {
             body: JSON.stringify(formData),
           });
           // console.log(response);
-          // if (response.status === 200) {
+          if (response.status === 200) {
             // console.log('Email sent successfully');
             // Optionally, you can reset the form here
             formik.resetForm()
@@ -99,14 +99,16 @@ export default function ContactUs() {
               theme: "colored",
               // transition: Bounce,
               });
-        }
-      })
-      .catch(error => {
-        console.error('Error verifying reCAPTCHA:', error);
-      });
-    // } else {
-    //   console.error('Failed to send email');
-    // }
+        // }else{
+        //   console.error('Error verifying reCAPTCHA please try again later');
+        // }
+      // })
+      // .catch(error => {
+      //   console.error('Error verifying reCAPTCHA:', error);
+      // });
+    } else {
+      console.error('Failed to send email',response);
+    }
     
   } catch (error) {
     console.error('Error sending email:', error);
@@ -170,11 +172,11 @@ const setTokenFunc = async(getToken) => {
       
 
       {SubmitFormLoading ? <div className='loader mx-auto'></div>:<button type                                                                    = "submit" disabled={!formik.isValid && formik.dirty } className=' mb-2 mx-auto md:mx-0 rounded-2xl p-2 px-3  md:me-8 md:w-1/3 bg-custom-gold text-white hover:bg-white border hover:border-custom-gold hover:text-custom-gold' > {t("send")}</button>}
-          <GoogleReCaptcha
+          {/* <GoogleReCaptcha
             className="google-recaptcha-custom-class"
             onVerify={setTokenFunc}
             refreshReCaptcha={refreshReCaptcha}
-          />
+          /> */}
       </form>
       </div>
       
